@@ -80,11 +80,11 @@ MAX_TILES_TO_PROCESS = None
 GEOMETRY_REPAIR_ENABLED = True
 
 #RUN FAILED
-RETRY_FAILED_TILES = True
-FAILED_TITLE_INPUT_PREFIX = "failed_tile_"
-RETRY_OUTPUT_PARTITION_DIR = "title_outputs_retry"
+RETRY_FAILED_TILES = True #When True, after the main processing loop, the script will attempt to reprocess any tiles that were marked as failed and had their input saved. This allows for a second chance to successfully process tiles that may have encountered transient issues during the initial run.
+FAILED_TILE_INPUT_PREFIX = "failed_tile_"
+RETRY_OUTPUT_PARTITION_DIR = "tile_outputs_retry"
 
-RETRY_TITLE_AOI_BUFFER_M = 75
+RETRY_TILE_AOI_BUFFER_M = 75
 RETRY_MAX_ROWS_PER_TILE = 250
 RETRY_LARGE_TILE_CHUNK_SIZE = 100
 
