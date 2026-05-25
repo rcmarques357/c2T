@@ -934,6 +934,19 @@ def retry_failed_tiles(osm_layers, output_cols):
             globals()["TILE_AOI_BUFFER_M"] = original_buffer
             globals()["OUTPUT_PARTITION_DIR"] = original_output_dir
 
+    pending_tiles={
+        tile_id: info
+        for tile_id, info in failed_registry.items()
+        if info.get("state") != "retrieved_success"
+    }
+
+    print("\n==============================================")
+    print("PENDING / FAILED RETIES")
+    print(f"Count: {len(pending_tiles):,}" )
+
+    for tile_id, info in pending_tiles.items():
+        print(f"Tile {tile_id} | State: {info.get('state')} | Rows: {info.get('rows')} | Error: {info.get('error','Unknown error')}")
+
     save_json_dict("retry_failed_tiles_status.json", retry_results)
 
     print("Retry completed.")
